@@ -1,10 +1,19 @@
-import mongoose from "mongoose";
+// Order Schema
 
-const OrdersSchema = new mongoose.Schema({
-  category: { type: String, required: true },
-  count: { type: Number, required: true },
-  status: { type: String, enum: ["Completed", "Pending", "Canceled"], required: true },
-  date: { type: Date, default: Date.now },
+import mongoose from "mongoose";
+const orderSchema = new mongoose.Schema({
+  tableNumber: Number,
+  items: [
+      {
+          name: String,
+          quantity: Number,
+          price: Number,
+      },
+  ],
+  totalPrice: Number,
+  timestamp: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Orders", OrdersSchema);
+export default mongoose.model('Order', orderSchema);
+
+

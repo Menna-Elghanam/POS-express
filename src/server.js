@@ -4,6 +4,8 @@ import cors from "cors";
 import mongoose from 'mongoose';
 import foodRouter from "./routers/food.router.js"
 import authRoutes from './routers/auth.js';
+import orderRouter from './routers/orders.router.js';
+
 
 const app = express();
 // cors midleware
@@ -25,6 +27,8 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use('/api/foods',foodRouter)
 //  auth routes
 app.use('/api/auth', authRoutes);
+// orders routes
+app.use('/api/orders', orderRouter);
 
 
 

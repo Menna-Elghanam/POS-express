@@ -55,6 +55,17 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Protected Route (Get User Info)
+router.get("/user", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).select("-password"); // Exclude password
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json({ msg: "Server error" });
+  }
+});
+
+
 // Protected Route (Dashboard)
 router.get("/dashboard", verifyToken, async (req, res) => {
   try {
@@ -72,7 +83,7 @@ router.post("/logout", (req, res) => {
 });
 
 // Middleware to verify token
-function verifyToken(req, res, next) {
+function verifyToken(req, res) {
   const token = req.headers["authorization"];
   if (!token)
     return res.status(401).json({ msg: "No token, authorization denied" });
@@ -80,7 +91,6 @@ function verifyToken(req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
-    next();
   } catch (error) {
     res.status(401).json({ msg: "Token is not valid" });
   }
