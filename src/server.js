@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from 'mongoose';
 import foodRouter from "./routers/food.router.js"
 import authRoutes from './routers/auth.js';
-import orderRouter from './routers/orders.router.js';
+import orderRouter from './routers/orders.js';
 
 
 const app = express();
@@ -29,6 +29,8 @@ app.use('/api/foods',foodRouter)
 app.use('/api/auth', authRoutes);
 // orders routes
 app.use('/api/orders', orderRouter);
+
+
 
 
 
