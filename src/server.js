@@ -5,6 +5,9 @@ import mongoose from 'mongoose';
 import foodRouter from "./routers/food.router.js"
 import authRoutes from './routers/auth.js';
 import orderRouter from './routers/orders.js';
+import analyticsRouter from './routers/analytics.js';
+import tableRoutes from './routers/tableRoutes.js';
+
 
 
 const app = express();
@@ -29,6 +32,10 @@ app.use('/api/foods',foodRouter)
 app.use('/api/auth', authRoutes);
 // orders routes
 app.use('/api/orders', orderRouter);
+// analytics router 
+app.use('/api/analytics', analyticsRouter);
+
+app.use('/api/tables', tableRoutes);
 
 
 

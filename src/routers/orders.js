@@ -1,6 +1,3 @@
-
-
-
 import express from 'express';
 import Order from '../models/Order.js';
 const router = express.Router();
@@ -25,8 +22,10 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+
 // Get all orders
-router.get('/orders', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const orders = await Order.find();
     res.status(200).json(orders);
